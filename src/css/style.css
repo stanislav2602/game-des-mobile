@@ -417,33 +417,8 @@ body {
 
 /* ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ */
 @media (orientation: landscape) and (max-width: 767px) {
-  :root {
-    --cell-size: 35px;
-  }
-  
-  .controls {
-    margin: 5px 0;
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .btn {
-    padding: 0.12rem 0.25rem;
-    font-size: 0.65rem;
-  }
-  
-  .board-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .board {
-    min-width: calc(8 * var(--cell-size) + 14px);
-  }
-  
-  .character {
-    background-size: contain;
+  #game-container {
+    margin-bottom: 100px;
   }
 }
 
