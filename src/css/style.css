@@ -421,9 +421,12 @@ body {
     --cell-size: 35px;
   }
   
+  body {
+    overflow-y: auto !important;
+  }
+  
   #game-container {
     padding: 5px;
-    padding-bottom: 80px;
   }
   
   .controls {
@@ -449,13 +452,6 @@ body {
   
   .character {
     background-size: contain;
-  }
-  
-  .board-container::after {
-    content: '';
-    display: block;
-    height: 50px;
-    width: 100%;
   }
 }
 
