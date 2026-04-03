@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --cell-size: 64px;
-}
-
 html, body {
   height: 100%;
   margin: 0;
@@ -287,57 +283,48 @@ body {
 }
 
 /* ============================================
-   АДАПТАЦИЯ ДЛЯ ВСЕХ УСТРОЙСТВ
+   УНИВЕРСАЛЬНАЯ АДАПТАЦИЯ (с использованием vw)
    ============================================ */
 
-/* ДЕСКТОП (по умолчанию) */
+/* Десктоп (больше 1024px) - фиксированный размер */
 @media (min-width: 1025px) {
   :root {
     --cell-size: 64px;
   }
 }
 
-/* ПЛАНШЕТЫ (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
+/* Планшеты и телефоны - динамический размер от ширины экрана */
+@media (max-width: 1024px) {
   :root {
-    --cell-size: 55px;
+    --cell-size: calc(100vw / 12);
   }
 }
 
-/* ТЕЛЕФОНЫ (481px - 767px) */
-@media (min-width: 481px) and (max-width: 767px) {
+@media (max-width: 768px) {
   :root {
-    --cell-size: 45px;
+    --cell-size: calc(100vw / 10);
+  }
+  
+  .controls {
+    margin: 10px 0;
+    gap: 8px;
+  }
+  
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
   }
 }
 
-/* БОЛЬШИЕ ТЕЛЕФОНЫ (376px - 480px) */
-@media (min-width: 376px) and (max-width: 480px) {
+@media (max-width: 600px) {
   :root {
-    --cell-size: 42px;
-  }
-  
-  .board-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    justify-content: flex-start;
-  }
-  
-  .board {
-    min-width: calc(8 * var(--cell-size) + 14px);
-  }
-  
-  .health-level {
-    width: 30px;
-    height: 3px;
+    --cell-size: calc(100vw / 9);
   }
 }
 
-/* МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 375px) */
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   :root {
-    --cell-size: 38px;
+    --cell-size: calc(100vw / 8.5);
   }
   
   .board-container {
@@ -352,80 +339,92 @@ body {
   }
   
   .controls {
-    gap: 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 5px;
   }
   
   .btn {
+    flex: 0 0 auto;
     padding: 0.2rem 0.4rem;
     font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 375px) {
+  :root {
+    --cell-size: calc(100vw / 8);
   }
   
   .health-level {
     width: 25px;
     height: 3px;
     top: 1px;
-    left: 5px;
+    left: 4px;
+  }
+  
+  .health-level-indicator {
+    height: 3px;
   }
 }
 
-/* ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 320px) */
 @media (max-width: 320px) {
   :root {
-    --cell-size: 34px;
+    --cell-size: calc(100vw / 7.5);
   }
   
   .btn {
     padding: 0.15rem 0.3rem;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
   
   .health-level {
-    width: 22px;
+    width: 20px;
+    height: 2px;
+  }
+  
+  .health-level-indicator {
+    height: 2px;
   }
 }
 
-/* ВЕРТИКАЛЬНАЯ ОРИЕНТАЦИЯ НА ТЕЛЕФОНАХ - КОРРЕКТНОЕ ОТОБРАЖЕНИЕ ПЕРСОНАЖЕЙ */
-@media (max-width: 768px) and (orientation: portrait) {
+/* Вертикальная ориентация - корректировка размера персонажей */
+@media (orientation: portrait) {
   .character {
-    background-size: 85% 85%;
+    background-size: 80% 80%;
     background-position: center;
   }
 }
 
-@media (max-width: 480px) and (orientation: portrait) {
-  .character {
-    background-size: 80% 80%;
-  }
-}
-
-@media (max-width: 375px) and (orientation: portrait) {
+@media (orientation: portrait) and (max-width: 480px) {
   .character {
     background-size: 75% 75%;
   }
 }
 
-@media (max-width: 320px) and (orientation: portrait) {
+@media (orientation: portrait) and (max-width: 375px) {
   .character {
     background-size: 70% 70%;
   }
 }
 
-/* ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ */
-@media (orientation: landscape) and (max-height: 768px) {
-  #game-container {
-    justify-content: flex-start;
-    padding: 5px 0;
-  }
-  
-  .controls {
-    margin: 5px 0;
-    gap: 8px;
+@media (orientation: portrait) and (max-width: 320px) {
+  .character {
+    background-size: 65% 65%;
   }
 }
 
-@media (orientation: landscape) and (max-width: 767px) {
+/* Горизонтальная ориентация */
+@media (orientation: landscape) {
+  .character {
+    background-size: contain;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
   :root {
-    --cell-size: 40px;
+    --cell-size: calc(100vh / 7);
   }
   
   .board-container {
@@ -436,12 +435,18 @@ body {
     min-width: calc(8 * var(--cell-size) + 14px);
   }
   
-  .character {
-    background-size: contain;
+  .controls {
+    margin: 5px 0;
+    gap: 6px;
+  }
+  
+  .btn {
+    padding: 0.15rem 0.3rem;
+    font-size: 0.65rem;
   }
 }
 
-/* TOUCH-ОПТИМИЗАЦИЯ */
+/* Touch-оптимизация */
 @media (max-width: 768px) {
   .cell {
     cursor: pointer;
