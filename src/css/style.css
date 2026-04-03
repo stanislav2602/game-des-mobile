@@ -421,14 +421,6 @@ body {
     --cell-size: 35px;
   }
   
-  body {
-    overflow-y: auto !important;
-  }
-  
-  #game-container {
-    padding: 5px;
-  }
-  
   .controls {
     margin: 5px 0;
     gap: 6px;
