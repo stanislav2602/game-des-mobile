@@ -199,9 +199,42 @@ body {
   top: 0;
   left: 0;
   z-index: 99;
-  background-size: 100% 100%;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+/* Вертикальная ориентация телефонов - герои не выходят за рамки */
+@media (max-width: 768px) and (orientation: portrait) {
+  .character {
+    background-size: 85% 85%;
+    background-position: center;
+  }
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
+  .character {
+    background-size: 80% 80%;
+  }
+}
+
+@media (max-width: 375px) and (orientation: portrait) {
+  .character {
+    background-size: 75% 75%;
+  }
+}
+
+@media (max-width: 320px) and (orientation: portrait) {
+  .character {
+    background-size: 70% 70%;
+  }
+}
+
+/* Горизонтальная ориентация */
+@media (orientation: landscape) {
+  .character {
+    background-size: contain;
+  }
 }
 
 .character.generic {
