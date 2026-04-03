@@ -17,17 +17,17 @@ body {
   font-size: 16px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100vh;
 }
 
 #game-container {
   width: 100%;
-  max-width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 10px;
 }
 
 .btn {
@@ -44,7 +44,6 @@ body {
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   border: none;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .controls {
@@ -54,14 +53,13 @@ body {
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
-  flex-shrink: 0;
 }
 
 .board-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .board {
@@ -292,146 +290,169 @@ body {
    АДАПТАЦИЯ ДЛЯ ВСЕХ УСТРОЙСТВ
    ============================================ */
 
-/* ДЕСКТОП */
+/* ДЕСКТОП (по умолчанию) */
 @media (min-width: 1025px) {
   :root {
     --cell-size: 64px;
   }
-  body {
-    align-items: center;
-  }
 }
 
-/* ПЛАНШЕТЫ */
+/* ПЛАНШЕТЫ (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   :root {
     --cell-size: 55px;
   }
-  body {
-    align-items: center;
+}
+
+/* ТЕЛЕФОНЫ (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  :root {
+    --cell-size: 45px;
   }
 }
 
-/* ТЕЛЕФОНЫ И МАЛЕНЬКИЕ УСТРОЙСТВА - ВЕРТИКАЛЬНАЯ ПРОКРУТКА СТРАНИЦЫ */
-@media (max-width: 767px) {
-  body {
-    align-items: flex-start;
-    display: block;
-  }
-  
-  #game-container {
-    padding: 10px;
-    min-height: 100vh;
-  }
-  
-  .controls {
-    margin: 10px 0;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.8rem;
+/* БОЛЬШИЕ ТЕЛЕФОНЫ (376px - 480px) */
+@media (min-width: 376px) and (max-width: 480px) {
+  :root {
+    --cell-size: 42px;
   }
   
   .board-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
     justify-content: flex-start;
   }
   
   .board {
     min-width: calc(8 * var(--cell-size) + 14px);
   }
-}
-
-/* ТЕЛЕФОНЫ - РАЗМЕР КЛЕТОК */
-@media (max-width: 767px) {
-  :root {
-    --cell-size: 45px;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --cell-size: 42px;
-  }
-  .btn {
-    padding: 0.2rem 0.4rem;
-    font-size: 0.75rem;
-  }
+  
   .health-level {
-    width: 32px;
+    width: 30px;
     height: 3px;
   }
 }
 
+/* МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 375px) */
 @media (max-width: 375px) {
   :root {
     --cell-size: 38px;
   }
+  
+  .board-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .board {
+    min-width: calc(8 * var(--cell-size) + 14px);
+  }
+  
+  .controls {
+    gap: 8px;
+  }
+  
   .btn {
-    padding: 0.15rem 0.35rem;
+    padding: 0.2rem 0.4rem;
     font-size: 0.7rem;
   }
+  
   .health-level {
-    width: 28px;
+    width: 25px;
     height: 3px;
+    top: 1px;
+    left: 5px;
   }
 }
 
+/* ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 320px) */
 @media (max-width: 320px) {
   :root {
     --cell-size: 34px;
   }
+  
   .btn {
-    padding: 0.12rem 0.25rem;
+    padding: 0.15rem 0.3rem;
     font-size: 0.65rem;
   }
+  
   .health-level {
-    width: 24px;
-    height: 2px;
+    width: 22px;
   }
 }
 
-/* ВЕРТИКАЛЬНАЯ ОРИЕНТАЦИЯ - ПЕРСОНАЖИ */
-@media (orientation: portrait) and (max-width: 767px) {
+/* ВЕРТИКАЛЬНАЯ ОРИЕНТАЦИЯ НА ТЕЛЕФОНАХ - КОРРЕКТНОЕ ОТОБРАЖЕНИЕ ПЕРСОНАЖЕЙ */
+@media (max-width: 768px) and (orientation: portrait) {
   .character {
     background-size: 85% 85%;
+    background-position: center;
   }
 }
 
-@media (orientation: portrait) and (max-width: 480px) {
+@media (max-width: 480px) and (orientation: portrait) {
   .character {
     background-size: 80% 80%;
   }
 }
 
-@media (orientation: portrait) and (max-width: 375px) {
+@media (max-width: 375px) and (orientation: portrait) {
   .character {
     background-size: 75% 75%;
   }
 }
 
+@media (max-width: 320px) and (orientation: portrait) {
+  .character {
+    background-size: 70% 70%;
+  }
+}
+
 /* ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ */
-@media (orientation: landscape) and (max-width: 767px) {
+@media (orientation: landscape) and (max-height: 768px) {
   #game-container {
-    margin-bottom: 100px;
+    justify-content: flex-start;
+    padding: 5px 0;
+  }
+  
+  .controls {
+    margin: 5px 0;
+    gap: 8px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 767px) {
+  :root {
+    --cell-size: 40px;
+  }
+  
+  .board-container {
+    overflow-x: auto;
+  }
+  
+  .board {
+    min-width: calc(8 * var(--cell-size) + 14px);
+  }
+  
+  .character {
+    background-size: contain;
   }
 }
 
 /* TOUCH-ОПТИМИЗАЦИЯ */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .cell {
     cursor: pointer;
   }
+  
   .cell.selected-yellow::before,
   .cell.selected-green::before,
   .cell.selected-red::before {
     border-width: 3px;
   }
+  
   .btn:active {
     transform: scale(0.97);
     background-color: #e9ecef;

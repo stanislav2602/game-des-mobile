@@ -26,7 +26,7 @@ export default class GamePlay {
    *
    * @param theme
    */
-drawUi(theme) {
+  drawUi(theme) {
   this.checkBinding();
 
   this.container.innerHTML = `
@@ -57,30 +57,22 @@ drawUi(theme) {
     cellEl.addEventListener('mouseenter', (event) => this.onCellEnter(event));
     cellEl.addEventListener('mouseleave', (event) => this.onCellLeave(event));
     cellEl.addEventListener('click', (event) => this.onCellClick(event));
+
     cellEl.addEventListener('touchstart', (event) => {
       event.preventDefault();
       this.onCellClick({ currentTarget: cellEl });
     });
+
     this.boardEl.appendChild(cellEl);
     this.cells.push(cellEl);
   }
 
   this.refreshCells();
-  
-  this.handleOrientationChange();
-  window.addEventListener('resize', () => this.handleOrientationChange());
-  window.addEventListener('orientationchange', () => this.handleOrientationChange());
 }
 
-handleOrientationChange() {
-  setTimeout(() => {
-    window.scrollTo(0, 0);
-    if (window.innerWidth > window.innerHeight) {
-      document.body.style.height = 'auto';
-      document.body.style.minHeight = '100vh';
-    }
-  }, 100);
-}
+  refreshCells() {
+    this.cells = Array.from(this.boardEl.children);
+  }
 
   /**
    * Draws positions (with chars) on boardEl
