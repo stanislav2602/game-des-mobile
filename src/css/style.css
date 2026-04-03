@@ -422,17 +422,23 @@ body {
   }
   
   body {
-    align-items: flex-start;
+    display: block;
+    height: auto;
+    min-height: 100vh;
   }
   
   #game-container {
     padding: 5px;
+    padding-bottom: 60px;
+    min-height: 100vh;
+    box-sizing: border-box;
   }
   
   .controls {
-    margin: 5px 0;
+    margin: 5px 0 10px 0;
     gap: 6px;
     flex-wrap: wrap;
+    justify-content: center;
   }
   
   .btn {
