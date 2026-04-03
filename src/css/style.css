@@ -204,69 +204,36 @@ body {
   background-position: center;
 }
 
-/* Вертикальная ориентация телефонов - герои не выходят за рамки */
-@media (max-width: 768px) and (orientation: portrait) {
-  .character {
-    background-size: 85% 85%;
-    background-position: center;
-  }
-}
-
-@media (max-width: 480px) and (orientation: portrait) {
-  .character {
-    background-size: 80% 80%;
-  }
-}
-
-@media (max-width: 375px) and (orientation: portrait) {
-  .character {
-    background-size: 75% 75%;
-  }
-}
-
-@media (max-width: 320px) and (orientation: portrait) {
-  .character {
-    background-size: 70% 70%;
-  }
-}
-
-/* Горизонтальная ориентация */
-@media (orientation: landscape) {
-  .character {
-    background-size: contain;
-  }
-}
-
 .character.generic {
-  background: url('../img/characters/generic.png');
+  background-image: url('../img/characters/generic.png');
 }
 
 .character.bowman {
-  background: url('../img/characters/bowman.png');
+  background-image: url('../img/characters/bowman.png');
 }
 
 .character.daemon {
-  background: url('../img/characters/daemon.png');
+  background-image: url('../img/characters/daemon.png');
 }
 
 .character.magician {
-  background: url('../img/characters/magician.png');
+  background-image: url('../img/characters/magician.png');
 }
 
 .character.swordsman {
-  background: url('../img/characters/swordsman.png');
+  background-image: url('../img/characters/swordsman.png');
 }
 
 .character.undead {
-  background: url('../img/characters/undead.png');
+  background-image: url('../img/characters/undead.png');
 }
 
 .character.vampire {
-  background: url('../img/characters/vampire.png');
+  background-image: url('../img/characters/vampire.png');
 }
 
 .character.zombie {
-  background: url('../img/characters/zombie.png');
+  background-image: url('../img/characters/zombie.png');
 }
 
 .health-level {
@@ -320,28 +287,20 @@ body {
 }
 
 /* ============================================
-   АДАПТИВНЫЙ ДИЗАЙН ДЛЯ ВСЕХ УСТРОЙСТВ
+   АДАПТАЦИЯ ДЛЯ ВСЕХ УСТРОЙСТВ
    ============================================ */
+
+/* ДЕСКТОП (по умолчанию) */
+@media (min-width: 1025px) {
+  :root {
+    --cell-size: 64px;
+  }
+}
 
 /* ПЛАНШЕТЫ (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   :root {
     --cell-size: 55px;
-  }
-
-  .controls {
-    margin: 15px 0;
-    gap: 12px;
-  }
-
-  .btn {
-    padding: .3rem .6rem;
-    font-size: 0.9rem;
-  }
-
-  .health-level {
-    width: 40px;
-    height: 4px;
   }
 }
 
@@ -350,221 +309,150 @@ body {
   :root {
     --cell-size: 45px;
   }
-
-  .controls {
-    margin: 12px 0;
-    gap: 10px;
-  }
-
-  .btn {
-    padding: .25rem .5rem;
-    font-size: 0.8rem;
-  }
-
-  .health-level {
-    width: 35px;
-    height: 3px;
-  }
-
-  .health-level-indicator {
-    height: 3px;
-  }
 }
 
 /* БОЛЬШИЕ ТЕЛЕФОНЫ (376px - 480px) */
 @media (min-width: 376px) and (max-width: 480px) {
   :root {
-    --cell-size: 40px;
+    --cell-size: 42px;
   }
-
+  
   .board-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     width: 100%;
     justify-content: flex-start;
   }
-
+  
   .board {
     min-width: calc(8 * var(--cell-size) + 14px);
   }
-
-  .controls {
-    margin: 10px 0;
-    gap: 8px;
-  }
-
-  .btn {
-    padding: .2rem .4rem;
-    font-size: 0.75rem;
-  }
-
+  
   .health-level {
     width: 30px;
+    height: 3px;
+  }
+}
+
+/* МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 375px) */
+@media (max-width: 375px) {
+  :root {
+    --cell-size: 38px;
+  }
+  
+  .board-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .board {
+    min-width: calc(8 * var(--cell-size) + 14px);
+  }
+  
+  .controls {
+    gap: 8px;
+  }
+  
+  .btn {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.7rem;
+  }
+  
+  .health-level {
+    width: 25px;
     height: 3px;
     top: 1px;
     left: 5px;
   }
 }
 
-/* МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 375px) iPhone SE/6/7/8 */
-@media (max-width: 375px) {
+/* ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 320px) */
+@media (max-width: 320px) {
   :root {
-    --cell-size: 32px;
+    --cell-size: 34px;
   }
-
-  .board-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .board {
-    min-width: calc(8 * var(--cell-size) + 14px);
-  }
-
-  .controls {
-    margin: 8px 0;
-    gap: 6px;
-  }
-
+  
   .btn {
     padding: 0.15rem 0.3rem;
     font-size: 0.65rem;
   }
-
+  
   .health-level {
-    width: 25px;
-    height: 2px;
-    top: 1px;
-    left: 4px;
-  }
-
-  .health-level-indicator {
-    height: 2px;
-  }
-
-  .damage {
-    font-size: 0.6rem;
-  }
-
-  @keyframes fade {
-    from {
-      opacity: 0;
-      top: calc(var(--cell-size) * 0.5);
-      font-size: 0.6rem;
-    }
-    to {
-      opacity: 1;
-      top: -12px;
-      font-size: 0.8rem;
-    }
+    width: 22px;
   }
 }
 
-/* ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 320px) iPhone 4/5 */
-@media (max-width: 320px) {
-  :root {
-    --cell-size: 28px;
-  }
-
-  .board {
-    min-width: calc(8 * var(--cell-size) + 14px);
-  }
-
-  .controls {
-    margin: 5px 0;
-    gap: 4px;
-  }
-
-  .btn {
-    padding: 0.1rem 0.25rem;
-    font-size: 0.55rem;
-  }
-
-  .health-level {
-    width: 20px;
-    height: 2px;
-    left: 4px;
+/* ВЕРТИКАЛЬНАЯ ОРИЕНТАЦИЯ НА ТЕЛЕФОНАХ - КОРРЕКТНОЕ ОТОБРАЖЕНИЕ ПЕРСОНАЖЕЙ */
+@media (max-width: 768px) and (orientation: portrait) {
+  .character {
+    background-size: 85% 85%;
+    background-position: center;
   }
 }
 
-/* ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ (все устройства) */
+@media (max-width: 480px) and (orientation: portrait) {
+  .character {
+    background-size: 80% 80%;
+  }
+}
+
+@media (max-width: 375px) and (orientation: portrait) {
+  .character {
+    background-size: 75% 75%;
+  }
+}
+
+@media (max-width: 320px) and (orientation: portrait) {
+  .character {
+    background-size: 70% 70%;
+  }
+}
+
+/* ГОРИЗОНТАЛЬНАЯ ОРИЕНТАЦИЯ */
 @media (orientation: landscape) and (max-height: 768px) {
   #game-container {
     justify-content: flex-start;
     padding: 5px 0;
   }
-
+  
   .controls {
     margin: 5px 0;
     gap: 8px;
   }
-
-  .board-container {
-    max-height: calc(100vh - 60px);
-  }
 }
 
-/* ПЛАНШЕТЫ В ГОРИЗОНТАЛЬНОЙ ОРИЕНТАЦИИ */
-@media (orientation: landscape) and (min-width: 768px) and (max-width: 1024px) {
-  :root {
-    --cell-size: 50px;
-  }
-}
-
-/* ТЕЛЕФОНЫ В ГОРИЗОНТАЛЬНОЙ ОРИЕНТАЦИИ */
 @media (orientation: landscape) and (max-width: 767px) {
   :root {
-    --cell-size: 38px;
+    --cell-size: 40px;
   }
-
+  
   .board-container {
     overflow-x: auto;
   }
-
+  
   .board {
     min-width: calc(8 * var(--cell-size) + 14px);
   }
-
-  .controls {
-    margin: 5px 0;
-    gap: 6px;
-  }
-
-  .btn {
-    padding: 0.15rem 0.3rem;
-    font-size: 0.65rem;
+  
+  .character {
+    background-size: contain;
   }
 }
 
-/* ДЕСКТОП (больше 1024px) */
-@media (min-width: 1025px) {
-  :root {
-    --cell-size: 64px;
-  }
-
-  .board-container {
-    overflow: visible;
-  }
-
-  .board {
-    min-width: auto;
-  }
-}
-
-/* TOUCH-ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ */
+/* TOUCH-ОПТИМИЗАЦИЯ */
 @media (max-width: 768px) {
   .cell {
     cursor: pointer;
   }
-
+  
   .cell.selected-yellow::before,
   .cell.selected-green::before,
   .cell.selected-red::before {
     border-width: 3px;
   }
-
+  
   .btn:active {
     transform: scale(0.97);
     background-color: #e9ecef;
