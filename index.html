@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Retro Game</title>
+    <style>
+      @media (orientation: landscape) and (max-width: 767px) {
+        body {
+          height: auto;
+          min-height: 100vh;
+        }
+        #game-container {
+          min-height: 101vh;
+        }
+      }
+    </style>
 </head>
 <body>
 <div id="game-container"></div>
